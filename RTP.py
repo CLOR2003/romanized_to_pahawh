@@ -17,6 +17,15 @@ def get_consonant(string):
     else:
         return None
 
+def swap_numerals(string):
+    new_string = ""
+    for c in string:
+        new_string += numerals_replacements[c]
+    pyperclip.copy(new_string)
+    pyautogui.hotkey('ctrl','v')
+    pyautogui.press('space')
+
+
 # Define the dictionary of replacements
 vowels_replacements = {
     "eeb":"𖬀𖬶","eem": "𖬀","eej":"𖬀𖬰","eev":"𖬀𖬲","ee":"𖬁","ees":"𖬁𖬰","eeg":"𖬁𖬲",
@@ -47,6 +56,10 @@ consonants_replacements = {
     "hl":"𖬥","z":"𖬥𖬰","ntxh":"𖬥𖬵","k":""
 }
 
+numerals_replacements = {
+    "0":"𖭐","1":"𖭑","2":"𖭒","3":"𖭓","4":"𖭔","5":"𖭕","6":"𖭖","7":"𖭗","8":"𖭘","9":"𖭙"
+}
+
 # Initialize a buffer to store typed characters
 buffer = ""
 
@@ -56,7 +69,6 @@ def on_press(key):
         # Add the character to the buffer
         buffer += key.char
         print(f"Buffer: {buffer}")
-        
     except AttributeError:
         # Handle special keys
         if key == keyboard.Key.space:
@@ -69,6 +81,11 @@ def on_press(key):
                 pyperclip.copy(word)
                 pyautogui.hotkey('ctrl','v')
                 pyautogui.press('space')  # Add a space to complete the input
+                buffer = ""
+            # Replace arabic numerals with pahawh numerals
+            if re.search("[0-9]*",buffer).group(0) != "":
+                pyautogui.hotkey('shift', 'ctrl','left')
+                swap_numerals(buffer)
                 buffer = ""
             else:
                 buffer = ""
