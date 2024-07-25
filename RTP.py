@@ -91,6 +91,7 @@ def on_press(key):
                 word = vowels_replacements[vowel] + consonants_replacements[consonant]
                 pyperclip.copy(word)
                 pyautogui.hotkey('ctrl','v')
+                pyautogui.press('space')
                 buffer = ""
             # Replace arabic numerals with pahawh numerals
             if re.search("[0-9]*",buffer).group(0) != "":
