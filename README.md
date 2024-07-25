@@ -7,3 +7,6 @@ In order to download RTP, go to "releases" on the right and click on it. Then cl
 Use:
 1. To QUIT OR EXIT out of RTP, press the ESC button.
 2. After typing RPA such as hmoob, press on the space button for the conversion from RPA to Pahawh to occur.
+
+Other information:
+* Have not tested the program in Linux, and was made for Windows
